@@ -2,3 +2,12 @@ body {
   margin: 0px;
   padding: 0;
 }
+
+.header {
+    display: block;
+    background-color: #ee6e73;
+}
+
+.header .btn {
+    margin: 1em;
+}
