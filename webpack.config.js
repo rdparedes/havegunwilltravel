@@ -38,6 +38,9 @@ module.exports = {
     libraryTarget: 'var',
     library: 'Havegunwilltravel'
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders
   },
