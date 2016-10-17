@@ -5,8 +5,8 @@ export default class Header extends Component {
     return (
       <div className='header'>
         <div className='row'>
-            <div className='col m3 push-m9'>
-                <a href='#' className='waves-effect waves-light btn' style={{float: 'right'}}>
+            <div className='col s12 right-align'>
+                <a href='#' className='waves-effect waves-light btn'>
                     Login
                 </a>
             </div> 
