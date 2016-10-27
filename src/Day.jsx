@@ -12,7 +12,7 @@ export default class Day extends Component {
   }
   render () {
     return (
-      <div id={ this.props.date }>
+      <div id={ this.props.date } className="day">
         <div className="day-header">
           <div className="row">
             <div className="col s2 m1">

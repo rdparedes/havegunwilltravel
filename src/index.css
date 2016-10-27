@@ -12,6 +12,9 @@ table {
 .header .btn {
   margin: 1em;
 }
+.day {
+  padding-bottom: 2em;
+}
 .day-header h3 {
   padding-top: 6px;
   text-transform: capitalize;

@@ -10,11 +10,12 @@ let base = Rebase.createClass({
 })
 
 function renderDays(days) {
+  // TODO: sort days correctly
   if (days.length > 0) {
     return days.map((day, index) => (
       <Day key={index} events={day.events} totalCost={day.totalCost}
         totalDistance={day.totalDistance} date={day.date} />
-    ))
+    )).reverse()
   }
   else return []
 }
