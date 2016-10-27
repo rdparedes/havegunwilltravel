@@ -2,16 +2,17 @@ body {
   margin: 0px;
   padding: 0;
 }
-
 table {
-    margin-bottom: 2em;
+  margin-bottom: 2em;
 }
-
 .header {
-    display: block;
-    background-color: #ee6e73;
+  display: block;
+  background-color: #ee6e73;
 }
-
 .header .btn {
-    margin: 1em;
+  margin: 1em;
+}
+.day-header h3 {
+  padding-top: 6px;
+  text-transform: capitalize;
 }
