@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import DayEvent from './DayEvent.jsx'
+import DayImages from './DayImages.jsx'
 import moment from 'moment'
 import 'moment/locale/es'
+import { base } from './App.jsx'
 
 export default class Day extends Component {
   constructor(props) {
@@ -32,11 +34,11 @@ export default class Day extends Component {
         <table className='highlight'>
           <thead>
             <tr>
-              <th width='15%'>Horario</th>
+              <th width='12%'>Horario</th>
               <th width='25%'>Evento</th>
-              <th width='10%'>$</th>
-              <th width='10%'>Kms.</th>
-              <th width='25%'>Cosas</th>
+              <th width='8%'>$</th>
+              <th width='8%'>Kms.</th>
+              <th width='32%'>Cosas</th>
               <th width='15%'>URL</th>
             </tr>
           </thead>
@@ -44,20 +46,7 @@ export default class Day extends Component {
             { dayEvents }
           </tbody>
         </table>
-        <div className='photos'>
-          <div className='row'>
-            <div className='col s12 m4'>
-              <a href='#' className='waves-effect waves-light btn'>
-                Agregar foto
-              </a>
-              </div>
-              <div className='col m8 hide-on-small-only right-align'>
-                Fotos grandes | Fotos pequeñas
-              </div>
-            </div>
-          <img className='responsive-img' src='#' />
-          <img className='responsive-img' src='#' />
-        </div>
+        <DayImages dayId={this.props.date}/>
       </div>
     )
   }

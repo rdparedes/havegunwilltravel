@@ -21,7 +21,6 @@ export default class App extends Component {
   }
   componentDidMount() {
     base.onAuth((authData) => {
-      console.log(authData)
       if (authData) {
         this.setState({
           loggedIn: true,
