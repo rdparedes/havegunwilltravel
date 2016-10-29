@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
 import Day from './Day.jsx'
-import Rebase from 're-base'
-
-let base = Rebase.createClass({
-  apiKey: "AIzaSyCAkRN5NsUMMEKpChQGFjXmHjh3nmGZtq0",
-  authDomain: "havegunwilltravel-33450.firebaseapp.com",
-  databaseURL: "https://havegunwilltravel-33450.firebaseio.com",
-  storageBucket: "havegunwilltravel-33450.appspot.com"
-})
+import moment from 'moment'
+import { base } from './App.jsx'
 
 function renderDays(days) {
-  // TODO: sort days correctly
   if (days.length > 0) {
     return days.map((day, index) => (
       <Day key={index} events={day.events} totalCost={day.totalCost}
         totalDistance={day.totalDistance} date={day.date} />
-    )).reverse()
+    )).sort(function(a, b) {
+      return moment(b.props.date, 'DD-MM-YYYY') - moment(a.props.date, 'DD-MM-YYYY')
+    }).reverse()
   }
   else return []
 }

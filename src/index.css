@@ -9,6 +9,10 @@ table {
   display: block;
   background-color: #ee6e73;
 }
+.header h4 {
+  color: #fff;
+  font-weight: 300;
+}
 .header .btn {
   margin: 1em;
 }

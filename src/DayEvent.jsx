@@ -7,11 +7,12 @@ export default class DayEvent extends Component {
   render () {
     return (
       <tr>
-        <td>07:05 - 8:00</td>
-        <td>Vuelo UIO-CUE</td>
-        <td>100</td>
-        <td>0</td>
-        <td><a href="https://www.google.com" target="_blank">www.google.com</a></td>
+        <td>{ this.props.schedule }</td>
+        <td>{ this.props.name }</td>
+        <td>{ this.props.totalCost }</td>
+        <td>{ this.props.carDistance }</td>
+        <td>{ this.props.description }</td>
+        <td><a href={this.props.url} target="_blank">{ this.props.url }</a></td>
       </tr>
     )
   }
