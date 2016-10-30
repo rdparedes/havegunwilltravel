@@ -11,15 +11,15 @@
     "postinstall": "webpack -p --config webpack.production.config.js"
   },
   "devDependencies": {
-    "extract-text-webpack-plugin": "^1.0.1",
-    "react-hot-loader": "1.3.0",
     "standard": "^8.0.0",
-    "webpack-cleanup-plugin": "^0.3.0",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "1.15.1",
     "webpack-hot-middleware": "^2.13.1"
   },
   "dependencies": {
+    "webpack-cleanup-plugin": "^0.3.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "react-hot-loader": "1.3.0",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-class-properties": "^6.11.5",
