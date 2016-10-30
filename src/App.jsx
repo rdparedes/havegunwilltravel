@@ -3,6 +3,7 @@ import Header from './Header.jsx'
 import Schedule from './Schedule.jsx'
 import Rebase from 're-base'
 
+// TODO: Add some fucking security, remove this from codebase
 export let base = Rebase.createClass({
   apiKey: 'AIzaSyCAkRN5NsUMMEKpChQGFjXmHjh3nmGZtq0',
   authDomain: 'havegunwilltravel-33450.firebaseapp.com',
@@ -36,9 +37,11 @@ export default class App extends Component {
     })
   }
   render () {
+    const loggedIn = this.state.loggedIn
+    const user = this.state.user
     return (
       <div className='App'>
-        <Header loggedIn={this.state.loggedIn} user={this.state.user} />
+        <Header loggedIn={loggedIn} user={user} />
         <Schedule />
       </div>
     )

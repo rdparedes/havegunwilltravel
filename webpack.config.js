@@ -3,8 +3,6 @@ var path = require('path')
 var loaders = require('./webpack.loaders')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const HOST = process.env.HOST || '127.0.0.1'
-const PORT = process.env.PORT || '8888'
 
 //  global css
 loaders.push({
@@ -27,8 +25,6 @@ loaders.push({
 
 module.exports = {
   entry: [
-    `webpack-dev-server/client?http://${HOST}:${PORT}`,
-    `webpack/hot/only-dev-server`,
     `./src/index.jsx` // Appʼs entry point
   ],
   devtool: process.env.WEBPACK_DEVTOOL || 'cheap-module-source-map',
@@ -53,9 +49,7 @@ module.exports = {
     // embed the webpack-dev-server runtime into the bundle
     inline: true,
     // serve index.html in place of 404 responses to allow HTML5 history
-    historyApiFallback: true,
-    port: PORT,
-    host: HOST
+    historyApiFallback: true
   },
   plugins: [
     new webpack.NoErrorsPlugin(),

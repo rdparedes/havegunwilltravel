@@ -93,7 +93,7 @@ export default class DayImages extends Component {
     }
   }
   render () {
-    let images = this.state.images
+    const images = this.state.images
     let uploadSection
     if (!this.state.file) {
       uploadSection = getAddFileSection(this)
