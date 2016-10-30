@@ -35,6 +35,11 @@ export default class Schedule extends Component {
     return (
       <div className='schedule'>
         <div className='container'>
+          <div className='row'>
+            <div className='col s12 hide-on-small-only right-align'>
+              Fotos grandes | Fotos pequeñas
+            </div>
+          </div>
           { days }
         </div>
       </div>

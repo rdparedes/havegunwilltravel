@@ -1,18 +1,35 @@
 import React, { Component } from 'react'
 import { base } from './App.jsx'
 
+function getAddFileSection(self) {
+  return <div className='col s12'>
+    <input type='file' accept='image/*' id={ 'upload' + self.props.dayId }
+      className='upload-file'/>
+    <label htmlFor={ 'upload' + self.props.dayId }
+      className='waves-effect waves-light btn'>Elegir foto</label>
+  </div>
+}
+
+function getUploadFileSection(self) {
+  return <div className='col s12'>
+    <span className='file-name'>{ self.state.file.name }</span>
+    <button onClick={ self.uploadImage } className='waves-effect waves-light btn'>
+       Subir foto
+    </button>
+  </div>
+}
+
 export default class DayImages extends Component {
   constructor(props) {
     super(props)
     this.state = {
       photos: {},
       images: [],
-      file: null
+      file: null,
+      photosAreLoading: false,
+      photosAreReady: false
     }
     this.storageRef = base.storage().ref(this.props.dayId)
-    this.photosAreLoading = false
-    this.photosAreReady = false
-
     this.uploadImage = () => {
       let uploadTask = this.storageRef.child(this.state.file.name).put(this.state.file)
       uploadTask.on(base.storage.TaskEvent.STATE_CHANGED, (snapshot) => {
@@ -21,7 +38,13 @@ export default class DayImages extends Component {
         console.error('An error has occurred while uploading the picture')
       }, () => {
         let url = uploadTask.snapshot.downloadURL
-        console.log('upload successful, this is the url: ', url)
+        let updatedPhotos = this.state.photos
+        let index = Object.keys(this.state.photos).length + 1
+        updatedPhotos[index] = this.state.file.name
+        this.setState({ photos: updatedPhotos })
+        this.addImageToDOM(url, index)
+        this.setState({ file: null })
+        this.addFileInputListener()
       })
     }
   }
@@ -32,62 +55,59 @@ export default class DayImages extends Component {
       state: 'photos',
       asArray: false
     })
-
+    this.addFileInputListener()
+  }
+  addFileInputListener() {
     let input = document.querySelectorAll('#upload' + this.props.dayId)[0]
     input.addEventListener('change', (e) => {
       let file = input.files[0]
       this.setState({ file: file })
     })
   }
-  componentDidUpdate(nextProps, nextState) {
-    if (!this.photosAreLoading && !this.photosAreReady) {
-      this.photosAreLoading = true
-      let photos = this.state.photos
-      let photosLength = Object.keys(this.state.photos).length
+  addImageToDOM(url, key) {
+    let img = <img key={key} className='responsive-img' src={url} />
+    this.setState({ images: this.state.images.concat(img) })
+  }
+  loadPhotos() {
+    this.setState({ photosAreLoading: true })
+    let photos = this.state.photos
+    let photosLength = Object.keys(photos).length
 
-      for (var key in photos) {
-        let index = key
-        this.storageRef.child(photos[key]).getDownloadURL().then((url) => {
-          let img = <img key={index} className='responsive-img' src={url} />
-          let imagesLength = this.state.images.length
-          this.setState({ images: this.state.images.concat(img) })
-          if (imagesLength >= photosLength) {
-            this.photosAreLoading = false
-            this.photosAreReady = true
-          }
-        })
-      }
+    for (var key in photos) {
+      let index = key
+      this.storageRef.child(photos[key]).getDownloadURL().then((url) => {
+        let imagesLength = this.state.images.length
+        this.addImageToDOM(url, index)
+        if (imagesLength >= photosLength) {
+          this.setState({
+            photosAreLoading: false,
+            photosAreReady: true
+          })
+        }
+      })
+    }
+  }
+  componentDidUpdate(nextProps, nextState) {
+    if (!this.state.photosAreLoading && !this.state.photosAreReady) {
+      this.loadPhotos()
     }
   }
   render () {
+    let images = this.state.images
     let uploadSection
     if (!this.state.file) {
-      uploadSection = <div className='col s12 m8'>
-        <input type='file' accept='image/*' id={ 'upload' + this.props.dayId }
-          className='upload-file'/>
-        <label htmlFor={ 'upload' + this.props.dayId }
-          className='waves-effect waves-light btn'>Elegir foto</label>
-      </div>
+      uploadSection = getAddFileSection(this)
     } else {
-      uploadSection = <div className='col s12 m8'>
-        <span className='file-name'>{ this.state.file.name }</span>
-        <button onClick={ this.uploadImage } className='waves-effect waves-light btn'>
-           Subir foto
-        </button>
-      </div>
+      uploadSection = getUploadFileSection(this)
     }
 
     return (
       <div className='photos'>
         <div className='row'>
           { uploadSection }
-          <div className='col m4 hide-on-small-only right-align'>
-            Fotos grandes | Fotos pequeñas
-          </div>
         </div>
-        { this.state.images }
+        { images }
       </div>
     )
   }
 }
-
