@@ -3,10 +3,9 @@ import DayEvent from './DayEvent.jsx'
 import DayImages from './DayImages.jsx'
 import moment from 'moment'
 import 'moment/locale/es'
-import { base } from './App.jsx'
 
 export default class Day extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     let parsedDate = moment(this.props.date, 'DD-MM-YYYY')
     this.dayOfTheWeek = parsedDate.format('dddd')
@@ -22,7 +21,7 @@ export default class Day extends Component {
     }
 
     return (
-      <div id={ this.props.date } className='day'>
+      <div id={this.props.date} className='day'>
         <div className='day-header'>
           <div className='row'>
             <div className='col s2 m1'>
@@ -46,7 +45,7 @@ export default class Day extends Component {
             { dayEvents }
           </tbody>
         </table>
-        <DayImages dayId={this.props.date}/>
+        <DayImages dayId={this.props.date} />
       </div>
     )
   }

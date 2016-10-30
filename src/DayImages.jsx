@@ -1,26 +1,26 @@
 import React, { Component } from 'react'
 import { base } from './App.jsx'
 
-function getAddFileSection(self) {
+function getAddFileSection (self) {
   return <div className='col s12'>
-    <input type='file' accept='image/*' id={ 'upload' + self.props.dayId }
-      className='upload-file'/>
-    <label htmlFor={ 'upload' + self.props.dayId }
+    <input type='file' accept='image/*' id={'upload' + self.props.dayId}
+      className='upload-file' />
+    <label htmlFor={'upload' + self.props.dayId}
       className='waves-effect waves-light btn'>Elegir foto</label>
   </div>
 }
 
-function getUploadFileSection(self) {
+function getUploadFileSection (self) {
   return <div className='col s12'>
     <span className='file-name'>{ self.state.file.name }</span>
-    <button onClick={ self.uploadImage } className='waves-effect waves-light btn'>
+    <button onClick={self.uploadImage} className='waves-effect waves-light btn'>
        Subir foto
     </button>
   </div>
 }
 
 export default class DayImages extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       photos: {},
@@ -48,8 +48,8 @@ export default class DayImages extends Component {
       })
     }
   }
-  componentDidMount() {
-    let photosEndpoint = 'days/' + this.props.dayId.replace(/_|-/g, "_") + '/photos'
+  componentDidMount () {
+    let photosEndpoint = 'days/' + this.props.dayId.replace(/_|-/g, '_') + '/photos'
     base.syncState(photosEndpoint, {
       context: this,
       state: 'photos',
@@ -57,18 +57,18 @@ export default class DayImages extends Component {
     })
     this.addFileInputListener()
   }
-  addFileInputListener() {
+  addFileInputListener () {
     let input = document.querySelectorAll('#upload' + this.props.dayId)[0]
     input.addEventListener('change', (e) => {
       let file = input.files[0]
       this.setState({ file: file })
     })
   }
-  addImageToDOM(url, key) {
+  addImageToDOM (url, key) {
     let img = <img key={key} className='responsive-img' src={url} />
     this.setState({ images: this.state.images.concat(img) })
   }
-  loadPhotos() {
+  loadPhotos () {
     this.setState({ photosAreLoading: true })
     let photos = this.state.photos
     let photosLength = Object.keys(photos).length
@@ -87,7 +87,7 @@ export default class DayImages extends Component {
       })
     }
   }
-  componentDidUpdate(nextProps, nextState) {
+  componentDidUpdate (nextProps, nextState) {
     if (!this.state.photosAreLoading && !this.state.photosAreReady) {
       this.loadPhotos()
     }

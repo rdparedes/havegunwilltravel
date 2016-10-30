@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { base } from './App.jsx'
 
 export default class Header extends Component {
-  constructor(props) {
-    super(props)
-  }
   render () {
     let authSection
     let login = () => {
@@ -18,19 +15,19 @@ export default class Header extends Component {
     }
     if (this.props.loggedIn) {
       authSection = <div className='row'>
-          <div className='col s6'>
-            <h4>Hola, { this.props.user.name }!</h4>
-          </div>
-          <div className='col s6 right-align'>
-            <button onClick={logout} className='waves-effect waves-light btn'>
+        <div className='col s6'>
+          <h4>Hola, { this.props.user.name }!</h4>
+        </div>
+        <div className='col s6 right-align'>
+          <button onClick={logout} className='waves-effect waves-light btn'>
                 Salir
-            </button>
-          </div>
+          </button>
+        </div>
       </div>
     } else {
       authSection = <div className='row'>
         <div className='col s12 right-align'>
-            <button onClick={login} className='waves-effect waves-light btn'>
+          <button onClick={login} className='waves-effect waves-light btn'>
               Autenticarse
           </button>
         </div>

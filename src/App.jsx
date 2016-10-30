@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import Header from './Header.jsx'
 import Schedule from './Schedule.jsx'
 import Rebase from 're-base'
@@ -12,20 +11,20 @@ export let base = Rebase.createClass({
 })
 
 export default class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       loggedIn: false,
       user: {}
     }
   }
-  componentDidMount() {
+  componentDidMount () {
     base.onAuth((authData) => {
       if (authData) {
         this.setState({
           loggedIn: true,
           user: {
-            name: authData.displayName.split(" ")[0]
+            name: authData.displayName.split(' ')[0]
           }
         })
       } else {
@@ -39,7 +38,7 @@ export default class App extends Component {
   render () {
     return (
       <div className='App'>
-        <Header loggedIn={this.state.loggedIn} user={this.state.user}/>
+        <Header loggedIn={this.state.loggedIn} user={this.state.user} />
         <Schedule />
       </div>
     )

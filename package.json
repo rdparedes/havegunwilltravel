@@ -36,6 +36,7 @@
   "scripts": {
     "start": "webpack-dev-server --progress --profile --colors",
     "lint": "standard",
+    "lint-fix": "standard --fix",
     "build": "webpack --optimize-minimize --optimize-dedupe --progress --profile --colors",
     "eject": "react-scripts eject"
   }
