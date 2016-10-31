@@ -3,7 +3,6 @@ var path = require('path')
 var loaders = require('./webpack.loaders')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-
 //  global css
 loaders.push({
   test: /[\/\\](node_modules|global)[\/\\].*\.css$/,

@@ -5,7 +5,7 @@ export default class Header extends Component {
   render () {
     let authSection
     let login = () => {
-      base.authWithOAuthRedirect('facebook', (error) => {
+      base.authWithOAuthPopup('facebook', (error) => {
         if (error) console.error(error)
         return
       })
