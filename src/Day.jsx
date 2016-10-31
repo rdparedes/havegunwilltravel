@@ -24,9 +24,7 @@ export default class Day extends Component {
       <div id={this.props.date} className='day'>
         <div className='day-header'>
           <div className='row'>
-            <div className='col s2 m1'>
-              <i className='medium material-icons'>label_outline</i>
-            </div>
+            <i className='medium material-icons'>label_outline</i>
             <h3>{ this.dayOfTheWeek } { this.day } - ${ this.props.totalCost } - { this.props.totalDistance }km</h3>
           </div>
         </div>
@@ -45,7 +43,7 @@ export default class Day extends Component {
             { dayEvents }
           </tbody>
         </table>
-        <DayImages dayId={this.props.date} />
+        <DayImages dayId={ this.props.date } photoSize={ this.props.photoSize } />
       </div>
     )
   }

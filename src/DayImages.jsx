@@ -65,7 +65,7 @@ export default class DayImages extends Component {
     })
   }
   addImageToDOM (url, key) {
-    let img = <img key={key} className='responsive-img' src={url} />
+    let img = <img key={key} className={'img ' + this.props.photoSize} src={url} />
     this.setState({ images: this.state.images.concat(img) })
   }
   loadPhotos () {

@@ -5,6 +5,10 @@ body {
 table {
   margin-bottom: 2em;
 }
+i {
+  float: left;
+  padding-right: .1em;
+}
 .header {
   display: block;
   background-color: #ee6e73;
@@ -37,4 +41,26 @@ table {
 .upload-file:focus + label {
   outline: 1px dotted #000;
   outline: -webkit-focus-ring-color auto 5px;
+}
+.img {
+  transition-duration: .25s;
+  transition-timing-function: ease-out;
+}
+.small-img {
+  max-width: 33%;
+  height: auto;
+  padding-right: 1em;
+}
+
+@media (max-width: 600px) {
+  h3 {
+    font-size: 2.4rem;
+  }
+  i.medium {
+    font-size: 3rem;
+  }
+  .small-img {
+    max-width: 100%;
+    padding-right: 0;
+  }
 }

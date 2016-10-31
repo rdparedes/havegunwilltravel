@@ -3,11 +3,11 @@ import Day from './Day.jsx'
 import moment from 'moment'
 import { base } from './App.jsx'
 
-function renderDays (days) {
-  if (days.length > 0) {
-    return days.map((day, index) => (
+function renderDays (state) {
+  if (state.days.length > 0) {
+    return state.days.map((day, index) => (
       <Day key={index} events={day.events} totalCost={day.totalCost}
-        totalDistance={day.totalDistance} date={day.date} />
+        totalDistance={day.totalDistance} date={day.date} photoSize={state.photoSize} />
     )).sort(function (a, b) {
       return moment(b.props.date, 'DD-MM-YYYY') - moment(a.props.date, 'DD-MM-YYYY')
     }).reverse()
@@ -16,11 +16,20 @@ function renderDays (days) {
   }
 }
 
+function changePhotosSize(size) {
+  if (size === 'big') {
+    $('.img').addClass('responsive-img').removeClass('small-img')
+  } else if (size === 'small') {
+    $('.img').addClass('small-img').removeClass('responsive-img')
+  }
+}
+
 export default class Schedule extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      days: []
+      days: [],
+      photoSize: 'responsive-img'
     }
   }
   componentWillMount () {
@@ -30,15 +39,28 @@ export default class Schedule extends Component {
       asArray: true
     })
   }
+  componentDidMount () {
+    $('#view-big-photos').click((event) => {
+      event.preventDefault()
+      this.setState({ photoSize: 'responsive-img' })
+      changePhotosSize('big')
+    })
+    $('#view-small-photos').click((event) => {
+      event.preventDefault()
+      this.setState({ photoSize: 'small-img' })
+      changePhotosSize('small')
+    })
+  }
   render () {
-    const days = renderDays(this.state.days)
+    const days = renderDays(this.state)
 
     return (
       <div className='schedule'>
         <div className='container'>
           <div className='row'>
             <div className='col s12 hide-on-small-only right-align'>
-              <a href='#'>Fotos grandes</a> | <a href='#'>Fotos pequeñas</a>
+              <a href='#' id='view-big-photos'>Fotos grandes</a>
+              &nbsp;| <a href='#' id='view-small-photos'>Fotos pequeñas</a>
             </div>
           </div>
           { days }
