@@ -113,13 +113,19 @@ export default class Day extends Component {
         </div>
       </form>
     }
+    let totalCost = 0
+    let totalDistance = 0
+    this.state.events.map((event) => {
+      totalCost += event.cost
+      totalDistance += event.carDistance
+    })
 
     return (
       <div id={this.props.date} className='day'>
         <div className='day-header'>
           <div className='row'>
             <i className='medium material-icons'>label_outline</i>
-            <h3>{ this.dayOfTheWeek } { this.day } - ${ this.props.totalCost } - { this.props.totalDistance }km</h3>
+            <h3>{ this.dayOfTheWeek } { this.day } - ${ totalCost } - { totalDistance }km</h3>
           </div>
         </div>
         { !this.state.addEventFormIsVisible ? addEventSection : saveEventSection }
