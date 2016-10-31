@@ -6,7 +6,7 @@ import { base } from './App.jsx'
 function renderDays (state, props) {
   if (state.days.length > 0) {
     return state.days.map((day, index) => (
-      <Day key={index} loggedIn={props.loggedIn} events={day.events} totalCost={day.totalCost}
+      <Day key={index} loggedIn={props.loggedIn} totalCost={day.totalCost}
         totalDistance={day.totalDistance} date={day.date} photoSize={state.photoSize} />
     )).sort(function (a, b) {
       return moment(b.props.date, 'DD-MM-YYYY') - moment(a.props.date, 'DD-MM-YYYY')

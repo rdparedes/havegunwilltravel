@@ -6,14 +6,14 @@ function getAddFileSection (self) {
     <input type='file' accept='image/*' id={'upload' + self.props.dayId}
       className='upload-file' />
     <label htmlFor={'upload' + self.props.dayId}
-      className='waves-effect waves-light btn'>Elegir foto</label>
+      className='waves-effect waves-light btn grey'>Elegir foto</label>
   </div>
 }
 
 function getUploadFileSection (self) {
   return <div className='col s12'>
     <span className='file-name'>{ self.state.file.name }</span>
-    <button onClick={self.uploadImage} className='waves-effect waves-light btn'>
+    <button onClick={self.uploadImage} className='waves-effect waves-light btn grey'>
        Subir foto
     </button>
   </div>
