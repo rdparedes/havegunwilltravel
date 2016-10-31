@@ -42,7 +42,7 @@ export default class App extends Component {
     return (
       <div className='App'>
         <Header loggedIn={loggedIn} user={user} />
-        <Schedule />
+        <Schedule loggedIn={loggedIn}/>
       </div>
     )
   }

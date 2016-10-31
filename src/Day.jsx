@@ -43,7 +43,8 @@ export default class Day extends Component {
             { dayEvents }
           </tbody>
         </table>
-        <DayImages dayId={ this.props.date } photoSize={ this.props.photoSize } />
+        <DayImages dayId={ this.props.date } photoSize={ this.props.photoSize }
+          loggedIn={ this.props.loggedIn } />
       </div>
     )
   }

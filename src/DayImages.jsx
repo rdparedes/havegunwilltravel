@@ -55,7 +55,9 @@ export default class DayImages extends Component {
       state: 'photos',
       asArray: false
     })
-    this.addFileInputListener()
+    if (this.props.loggedIn) {
+      this.addFileInputListener()
+    }
   }
   addFileInputListener () {
     let input = document.querySelectorAll('#upload' + this.props.dayId)[0]
@@ -95,10 +97,12 @@ export default class DayImages extends Component {
   render () {
     const images = this.state.images
     let uploadSection
-    if (!this.state.file) {
-      uploadSection = getAddFileSection(this)
-    } else {
-      uploadSection = getUploadFileSection(this)
+    if (this.props.loggedIn) {
+      if (!this.state.file) {
+        uploadSection = getAddFileSection(this)
+      } else {
+        uploadSection = getUploadFileSection(this)
+      }
     }
 
     return (

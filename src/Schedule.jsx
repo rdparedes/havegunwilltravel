@@ -3,10 +3,10 @@ import Day from './Day.jsx'
 import moment from 'moment'
 import { base } from './App.jsx'
 
-function renderDays (state) {
+function renderDays (state, props) {
   if (state.days.length > 0) {
     return state.days.map((day, index) => (
-      <Day key={index} events={day.events} totalCost={day.totalCost}
+      <Day key={index} loggedIn={props.loggedIn} events={day.events} totalCost={day.totalCost}
         totalDistance={day.totalDistance} date={day.date} photoSize={state.photoSize} />
     )).sort(function (a, b) {
       return moment(b.props.date, 'DD-MM-YYYY') - moment(a.props.date, 'DD-MM-YYYY')
@@ -52,7 +52,7 @@ export default class Schedule extends Component {
     })
   }
   render () {
-    const days = renderDays(this.state)
+    const days = renderDays(this.state, this.props)
 
     return (
       <div className='schedule'>
